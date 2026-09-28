@@ -100,6 +100,7 @@ watchDebounced([
   () => providers.value[providerId]?.baseUrl,
 ], loadVoicesWhenConfigured, {
   debounce: 500,
+  immediate: true,
 })
 </script>
 
@@ -145,6 +146,7 @@ watchDebounced([
     <template #playground>
       <SpeechPlayground
         :available-voices="availableVoices"
+        :voices-loading="speechStore.voiceCatalogStatus[providerId]?.loading ?? false"
         :generate-speech="handleGenerateSpeech"
         :api-key-configured="apiKeyConfigured"
         default-text="Hello! This is a test of the ElevenLabs voice synthesis."
